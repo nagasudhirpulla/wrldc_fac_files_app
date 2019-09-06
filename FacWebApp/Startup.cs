@@ -99,6 +99,12 @@ namespace FacWebApp
                 RequestPath = "/Files"
             });
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Configuration["FacFolderPath"]),
+                RequestPath = "/Files"
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
