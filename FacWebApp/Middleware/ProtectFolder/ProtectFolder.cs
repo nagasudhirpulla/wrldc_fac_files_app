@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
-namespace FacWebApp
+namespace FacWebApp.Middleware.ProtectFolder
 {
     public class ProtectFolder
     {

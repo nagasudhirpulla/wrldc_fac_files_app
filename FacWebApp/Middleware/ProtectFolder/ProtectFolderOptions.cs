@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace FacWebApp
+namespace FacWebApp.Middleware.ProtectFolder
 {
     public class ProtectFolderOptions
     {

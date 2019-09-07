@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace FacWebApp
+namespace FacWebApp.Middleware.ProtectFolder
 {
     public static class ProtectFolderExtensions
     {

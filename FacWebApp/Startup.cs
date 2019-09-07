@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FacWebApp.Services;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using FacWebApp.Middleware.ProtectFolder;
 
 namespace FacWebApp
 {
