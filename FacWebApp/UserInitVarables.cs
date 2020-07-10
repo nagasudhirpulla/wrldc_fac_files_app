@@ -14,6 +14,9 @@ namespace FacWebApp
         public string AdminPassword { get; set; }
         public string GuestUserName { get; set; } = "guest";
         public string AdminUserName { get; set; } = "admin";
+        public string SurchargeUserName { get; set; } = "surchargeGuest";
+        public string SurchargeEmail { get; set; }
+        public string SurchargePassword { get; set; }
 
         public void InitializeFromConfig(IConfiguration Configuration)
         {
@@ -23,6 +26,9 @@ namespace FacWebApp
             AdminPassword = Configuration["IdentityInit:AdminPassword"];
             GuestUserName = Configuration["IdentityInit:GuestUserName"];
             AdminUserName = Configuration["IdentityInit:AdminUserName"];
+            SurchargeUserName = Configuration["IdentityInit:SurchargeUserName"];
+            SurchargeEmail = Configuration["IdentityInit:SurchargeEmail"];
+            SurchargePassword = Configuration["IdentityInit:SurchargePassword"];
         }
     }
 }

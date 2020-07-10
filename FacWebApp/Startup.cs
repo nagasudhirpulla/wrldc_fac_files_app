@@ -43,7 +43,7 @@ namespace FacWebApp
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
-                options.Password.RequireDigit = true;
+                options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
@@ -54,7 +54,12 @@ namespace FacWebApp
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("FolderAuthorize", policy => policy.RequireAuthenticatedUser());
+                options.AddPolicy("FolderAuthorize", policy => policy.RequireRole(new string[] { AppIdentityDataInitializer.AdministratorRoleString, AppIdentityDataInitializer.GuestUserRoleString }));
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SurchargeFolderAuthorize", policy => policy.RequireRole(new string[] { AppIdentityDataInitializer.AdministratorRoleString, AppIdentityDataInitializer.SurchargeRoleString }));
             });
 
             // Add application services.
@@ -105,6 +110,26 @@ namespace FacWebApp
                 FileProvider = new PhysicalFileProvider(Configuration["FacFolderPath"]),
                 RequestPath = "/Files"
             });
+
+
+            app.UseProtectFolder(new ProtectFolderOptions
+            {
+                Path = "/SurchargeFiles",
+                PolicyName = "SurchargeFolderAuthorize"
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Configuration["SurchargeFolderPath"]),
+                RequestPath = "/SurchargeFiles"
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Configuration["SurchargeFolderPath"]),
+                RequestPath = "/SurchargeFiles"
+            });
+
 
             app.UseMvc(routes =>
             {

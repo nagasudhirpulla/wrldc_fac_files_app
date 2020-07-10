@@ -26,7 +26,7 @@ namespace FacWebApp.Middleware.ProtectFolder
                                     httpContext.User, null, _policyName);
                 if (!authorized.Succeeded)
                 {
-                    httpContext.Response.Redirect("/Identity/Account/Login?returnUrl=/Files");
+                    httpContext.Response.Redirect($"/Identity/Account/Login?returnUrl={_path}");
                 }
             }
 
